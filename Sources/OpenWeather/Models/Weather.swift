@@ -14,6 +14,7 @@ struct Weather: Identifiable, Decodable {
     let rainfall: PrecipitationMeasurement?
     let snowfall: PrecipitationMeasurement?
     let timestamp: Date
+    let meta: WeatherMetadata
 }
 
 extension Weather {
@@ -31,6 +32,7 @@ extension Weather {
         case rainfall = "rain"
         case snowfall = "snow"
         case timestamp = "dt"
+        case meta = "sys"
     }
 
 }

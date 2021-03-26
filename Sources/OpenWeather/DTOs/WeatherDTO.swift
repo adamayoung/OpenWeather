@@ -1,17 +1,16 @@
-import CoreLocation
 import Foundation
 
 /// Weather DTO.
 public struct WeatherDTO: Identifiable {
 
-    /// City identifier.
-    public let id: Int
-    /// City name.
-    public let name: String
+    public var id: Int {
+        place.id
+    }
+    
+    /// The place this weather is for.
+    public let place: PlaceDTO
     /// Time zone.
     public let timeZone: TimeZone
-    /// City geo location.
-    public let coordinate: CLLocationCoordinate2D
     /// Weather conditions.
     public let conditions: [ConditionDTO]
     /// Temperature measurement.
@@ -46,10 +45,8 @@ public struct WeatherDTO: Identifiable {
     /// Creates  a new `WeatherDTO`.
     ///
     /// - Parameters:
-    ///   - id:City identifier.
-    ///   - name: City name.
+    ///   - place: The place this weather is for.
     ///   - timeZone: Time zone.
-    ///   - coordinate: City geo location.
     ///   - conditions: Weather conditions.
     ///   - temperature: Temperature.
     ///   - feelsLikeTemperature: Accounts for the human perception of temperature.
@@ -65,17 +62,15 @@ public struct WeatherDTO: Identifiable {
     ///   - rainfall: Rainfall measurement, if available.
     ///   - snowfall: Snowfall measurement, if available.
     ///   - timestamp: When the weather result was taken.
-    public init(id: Int, name: String, timeZone: TimeZone, coordinate: CLLocationCoordinate2D,
-                conditions: [ConditionDTO], temperature: Measurement<UnitTemperature>,
-                feelsLikeTemperature: Measurement<UnitTemperature>, maximumTemperature: Measurement<UnitTemperature>,
-                minimumTemperature: Measurement<UnitTemperature>, pressure: Measurement<UnitPressure>,
-                seaLevelPressure: Measurement<UnitPressure>?, groundLevelPressure: Measurement<UnitPressure>?,
-                humidity: Double, visibility: Measurement<UnitLength>, wind: WindMeasurementDTO, cloudiness: Double,
-                rainfall: PrecipitationMeasurementDTO?, snowfall: PrecipitationMeasurementDTO?, timestamp: Date) {
-        self.id = id
-        self.name = name
+    public init(place: PlaceDTO, timeZone: TimeZone, conditions: [ConditionDTO],
+                temperature: Measurement<UnitTemperature>, feelsLikeTemperature: Measurement<UnitTemperature>,
+                maximumTemperature: Measurement<UnitTemperature>, minimumTemperature: Measurement<UnitTemperature>,
+                pressure: Measurement<UnitPressure>, seaLevelPressure: Measurement<UnitPressure>?,
+                groundLevelPressure: Measurement<UnitPressure>?, humidity: Double, visibility: Measurement<UnitLength>,
+                wind: WindMeasurementDTO, cloudiness: Double, rainfall: PrecipitationMeasurementDTO?,
+                snowfall: PrecipitationMeasurementDTO?, timestamp: Date) {
+        self.place = place
         self.timeZone = timeZone
-        self.coordinate = coordinate
         self.conditions = conditions
         self.temperature = temperature
         self.feelsLikeTemperature = feelsLikeTemperature

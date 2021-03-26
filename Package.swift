@@ -15,7 +15,13 @@ let package = Package(
     ],
 
     targets: [
-        .target(name: "OpenWeather", dependencies: []),
+        .target(
+            name: "OpenWeather",
+            dependencies: [],
+            resources: [
+                .copy("Data")
+            ]
+        ),
         .testTarget(name: "OpenWeatherTests", dependencies: ["OpenWeather"])
     ]
 )

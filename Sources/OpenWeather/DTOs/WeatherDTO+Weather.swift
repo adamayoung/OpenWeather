@@ -1,12 +1,10 @@
-import CoreLocation
 import Foundation
 
 extension WeatherDTO {
 
     init(weather: Weather) {
+        let place = PlaceDTO(weather: weather)
         let timeZone = TimeZone(secondsFromGMT: weather.timezone)!
-        let coordinate = CLLocationCoordinate2D(latitude: weather.coordinate.latitude,
-                                                longitude: weather.coordinate.longitude)
         let conditions = weather.conditions.map(ConditionDTO.init)
         let temperature = Measurement(value: weather.measurement.temperature, unit: UnitTemperature.kelvin)
         let feelsLikeTemperature = Measurement(value: weather.measurement.feelsLikeTemperature,
@@ -47,13 +45,12 @@ extension WeatherDTO {
             return PrecipitationMeasurementDTO(precipitation: snowfall)
         }()
 
-        self.init(id: weather.id, name: weather.name, timeZone: timeZone, coordinate: coordinate,
-                  conditions: conditions, temperature: temperature, feelsLikeTemperature: feelsLikeTemperature,
-                  maximumTemperature: maximumTemperature, minimumTemperature: minimumTemperature, pressure: pressure,
-                  seaLevelPressure: seaLevelPressure, groundLevelPressure: groundLevelPressure,
-                  humidity: weather.measurement.humidity, visibility: visibility, wind: wind,
-                  cloudiness: weather.cloud.cloudiness, rainfall: rainfall, snowfall: snowfall,
-                  timestamp: weather.timestamp)
+        self.init(place: place, timeZone: timeZone, conditions: conditions, temperature: temperature,
+                  feelsLikeTemperature: feelsLikeTemperature, maximumTemperature: maximumTemperature,
+                  minimumTemperature: minimumTemperature, pressure: pressure, seaLevelPressure: seaLevelPressure,
+                  groundLevelPressure: groundLevelPressure, humidity: weather.measurement.humidity,
+                  visibility: visibility, wind: wind, cloudiness: weather.cloud.cloudiness, rainfall: rainfall,
+                  snowfall: snowfall, timestamp: weather.timestamp)
     }
 
 }

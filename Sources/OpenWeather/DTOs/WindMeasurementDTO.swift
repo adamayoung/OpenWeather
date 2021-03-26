@@ -1,4 +1,3 @@
-import CoreLocation
 import Foundation
 
 /// Wind measurement.
@@ -7,7 +6,7 @@ public struct WindMeasurementDTO {
     /// Wind speed measurement.
     public let speed: Measurement<UnitSpeed>
     /// Wind direction measurement.
-    public let direction: CLLocationDirection
+    public let direction: Measurement<UnitAngle>
     /// Wind gust speed measurement.
     public let gustSpeed: Measurement<UnitSpeed>?
 
@@ -17,7 +16,7 @@ public struct WindMeasurementDTO {
     ///   - speed: Wind speed measurement.
     ///   - direction: Wind direction measurement.
     ///   - gustSpeed: Wind gust speed measurement.
-    public init(speed: Measurement<UnitSpeed>, direction: CLLocationDirection,
+    public init(speed: Measurement<UnitSpeed>, direction: Measurement<UnitAngle>,
                 gustSpeed: Measurement<UnitSpeed>? = nil) {
         self.speed = speed
         self.direction = direction

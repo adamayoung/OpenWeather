@@ -3,7 +3,7 @@ import Foundation
 struct PrecipitationMeasurement: Decodable {
 
     let inLastHour: Double
-    let inLastThreeHours: Double
+    let inLastThreeHours: Double?
 
 }
 

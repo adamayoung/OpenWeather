@@ -2,6 +2,6 @@ import Foundation
 
 public protocol Endpoint {
 
-    var path: URL { get }
+    var url: URL { get }
 
 }
