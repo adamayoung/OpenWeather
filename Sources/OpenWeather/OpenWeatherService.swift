@@ -38,6 +38,7 @@ public final class OpenWeatherService: WeatherService {
 
 }
 
+#if !os(Linux)
 @available(OSX 10.15, iOS 14, watchOS 7, *)
 extension OpenWeatherService {
 
@@ -126,6 +127,7 @@ extension OpenWeatherService {
     }
 
 }
+#endif
 
 extension OpenWeatherService {
 
