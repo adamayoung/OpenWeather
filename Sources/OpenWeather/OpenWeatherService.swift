@@ -99,7 +99,7 @@ extension OpenWeatherService {
     public func fetchWeather(forLatitude latitude: Double, longitude: Double,
                              completion: @escaping (Result<Weather, OpenWeatherError>) -> Void) {
         client.request(OpenWeatherEndpoint.weatherByLocation(latitude: latitude, longitude: longitude),
-                       apiKey: apiKey)  { (result: Result<WeatherDTO, OpenWeatherError>) in
+                       apiKey: apiKey) { (result: Result<WeatherDTO, OpenWeatherError>) in
             completion(result.map(Weather.init))
         }
     }

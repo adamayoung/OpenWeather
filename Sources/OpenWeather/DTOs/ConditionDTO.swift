@@ -8,7 +8,7 @@ struct ConditionDTO: Decodable {
     let main: String
     let description: String
     let icon: String
-    
+
     var iconURL: URL {
         Self.iconBaseURL.appendingPathComponent("\(icon)@2x.png")
     }

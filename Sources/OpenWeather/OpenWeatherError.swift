@@ -1,7 +1,7 @@
 import Foundation
 
 public enum OpenWeatherError: Error {
-    
+
     case network(URLError)
     case unauthorized
     case notFound

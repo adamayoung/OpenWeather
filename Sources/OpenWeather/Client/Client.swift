@@ -9,7 +9,8 @@ protocol Client {
     @available(OSX 10.15, iOS 14, watchOS 7, *)
     func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String) -> AnyPublisher<Response, OpenWeatherError>
 
-    func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String, completion: @escaping (Result<Response, OpenWeatherError>) -> Void)
+    func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String,
+                                      completion: @escaping (Result<Response, OpenWeatherError>) -> Void)
 
 }
 
@@ -34,7 +35,8 @@ final class HTTPClient: Client {
             .eraseToAnyPublisher()
     }
 
-    func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String, completion: @escaping (Result<Response, OpenWeatherError>) -> Void) {
+    func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String,
+                                      completion: @escaping (Result<Response, OpenWeatherError>) -> Void) {
         let urlRequest = Self.createURLRequest(for: endpoint, apiKey: apiKey)
 
         urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in

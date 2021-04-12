@@ -7,5 +7,5 @@ public struct Coordinate {
     public let latitude: Double
     /// Longitude.
     public let longitude: Double
-    
+
 }

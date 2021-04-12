@@ -2,7 +2,7 @@ import Foundation
 
 /// A place.
 public struct Place: Identifiable {
-    
+
     /// Place identifier.
     public let id: Int
     /// Place name.
@@ -11,5 +11,5 @@ public struct Place: Identifiable {
     public let countryCode: String
     /// Place coordinate.
     public let coordinate: Coordinate
-    
+
 }

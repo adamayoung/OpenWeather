@@ -6,7 +6,7 @@ public struct Weather: Identifiable {
     public var id: Int {
         place.id
     }
-    
+
     /// The place this weather is for.
     public let place: Place
     /// Time zone.
