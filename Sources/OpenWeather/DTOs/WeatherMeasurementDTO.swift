@@ -1,6 +1,6 @@
 import Foundation
 
-struct WeatherMeasurement: Decodable {
+struct WeatherMeasurementDTO: Decodable {
 
     let temperature: Double
     let feelsLikeTemperature: Double
@@ -13,7 +13,7 @@ struct WeatherMeasurement: Decodable {
 
 }
 
-extension WeatherMeasurement {
+extension WeatherMeasurementDTO {
 
     private enum CodingKeys: String, CodingKey {
         case temperature = "temp"

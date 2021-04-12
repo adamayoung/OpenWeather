@@ -1,26 +1,19 @@
 import Foundation
 
-/// Wind measurement.
-public struct WindMeasurementDTO {
+struct WindMeasurementDTO: Decodable {
 
-    /// Wind speed measurement.
-    public let speed: Measurement<UnitSpeed>
-    /// Wind direction measurement.
-    public let direction: Measurement<UnitAngle>
-    /// Wind gust speed measurement.
-    public let gustSpeed: Measurement<UnitSpeed>?
+    let speed: Double
+    let direction: Double
+    let gust: Double?
 
-    /// Creates a new `WindDTO`.
-    ///
-    /// - Parameters:
-    ///   - speed: Wind speed measurement.
-    ///   - direction: Wind direction measurement.
-    ///   - gustSpeed: Wind gust speed measurement.
-    public init(speed: Measurement<UnitSpeed>, direction: Measurement<UnitAngle>,
-                gustSpeed: Measurement<UnitSpeed>? = nil) {
-        self.speed = speed
-        self.direction = direction
-        self.gustSpeed = gustSpeed
+}
+
+extension WindMeasurementDTO {
+
+    private enum CodingKeys: String, CodingKey {
+        case speed
+        case direction = "deg"
+        case gust
     }
 
 }

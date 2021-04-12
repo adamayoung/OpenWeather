@@ -1,12 +1,12 @@
 import Foundation
 
-struct CloudMeasurement: Decodable {
+struct CloudMeasurementDTO: Decodable {
 
     let cloudiness: Double
 
 }
 
-extension CloudMeasurement {
+extension CloudMeasurementDTO {
 
     private enum CodingKeys: String, CodingKey {
         case cloudiness = "all"

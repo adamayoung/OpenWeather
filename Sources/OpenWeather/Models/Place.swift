@@ -1,21 +1,15 @@
 import Foundation
 
-struct Place: Decodable {
+/// A place.
+public struct Place: Identifiable {
     
-    let id: Int
-    let name: String
-    let country: String
-    let coordinate: Coordinate
-    
-}
-
-extension Place {
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case country
-        case coordinate = "coord"
-    }
+    /// Place identifier.
+    public let id: Int
+    /// Place name.
+    public let name: String
+    /// Place country code.
+    public let countryCode: String
+    /// Place coordinate.
+    public let coordinate: Coordinate
     
 }

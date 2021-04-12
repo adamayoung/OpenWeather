@@ -1,17 +1,11 @@
 import Foundation
 
-struct Coordinate: Decodable {
+/// A location coordinate.
+public struct Coordinate {
 
-    let longitude: Double
-    let latitude: Double
-
-}
-
-extension Coordinate {
-
-    private enum CodingKeys: String, CodingKey {
-        case longitude = "lon"
-        case latitude = "lat"
-    }
-
+    /// Latitude..
+    public let latitude: Double
+    /// Longitude.
+    public let longitude: Double
+    
 }

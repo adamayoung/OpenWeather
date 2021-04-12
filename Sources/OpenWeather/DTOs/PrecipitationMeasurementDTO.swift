@@ -1,21 +1,17 @@
 import Foundation
 
-/// Precipitation measurement.
-public struct PrecipitationMeasurementDTO {
+struct PrecipitationMeasurementDTO: Decodable {
 
-    /// Precipitation in the last 1 hour.
-    public let inLastHour: Measurement<UnitLength>
-    /// Precipitation in the last 3 hours.
-    public let inLastThreeHours: Measurement<UnitLength>?
+    let inLastHour: Double
+    let inLastThreeHours: Double?
 
-    /// Creates a new `PrecipitationMeasurementDTO`.
-    ///
-    /// - Parameters:
-    ///   - inLastHour: Precipitation in the last 1 hour.
-    ///   - inLastThreeHours: Precipitation in the last 3 hours.
-    public init(inLastHour: Measurement<UnitLength>, inLastThreeHours: Measurement<UnitLength>? = nil) {
-        self.inLastHour = inLastHour
-        self.inLastThreeHours = inLastThreeHours
+}
+
+extension PrecipitationMeasurementDTO {
+
+    private enum CodingKeys: String, CodingKey {
+        case inLastHour = "1h"
+        case inLastThreeHours = "3h"
     }
 
 }

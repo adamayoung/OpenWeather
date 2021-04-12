@@ -1,6 +1,6 @@
 import Foundation
 
-struct WeatherMetadata: Decodable {
+struct WeatherMetadataDTO: Decodable {
     
     let country: String
     

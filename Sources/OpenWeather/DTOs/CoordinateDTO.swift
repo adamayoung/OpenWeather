@@ -1,8 +1,17 @@
 import Foundation
 
-public struct CoordinateDTO {
-    
-    public let latitude: Double
-    public let longitude: Double
-    
+struct CoordinateDTO: Decodable {
+
+    let longitude: Double
+    let latitude: Double
+
+}
+
+extension CoordinateDTO {
+
+    private enum CodingKeys: String, CodingKey {
+        case longitude = "lon"
+        case latitude = "lat"
+    }
+
 }

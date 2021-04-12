@@ -1,16 +1,29 @@
 import Foundation
 
-struct Condition: Decodable {
+/// Weather condition.
+public struct Condition: Identifiable {
 
-    private static let iconBaseURL = URL(string: "http://openweathermap.org/img/wn")!
+    /// Weather condition identifier.
+    public let id: Int
+    /// Group of weather parameters.
+    public let main: String
+    /// Weather condition within the group.
+    public let description: String
+    /// Weather icon URL.
+    public let iconURL: URL
 
-    let id: Int
-    let main: String
-    let description: String
-    let icon: String
-    
-    var iconURL: URL {
-        Self.iconBaseURL.appendingPathComponent("\(icon)@2x.png")
+    /// Creates a `ConditionDTO`.
+    ///
+    /// - Parameters:
+    ///   - id: Weather condition identifier.
+    ///   - main: Weather condition identifier.
+    ///   - description: Weather condition within the group.
+    ///   - iconURL: Weather icon URL.
+    public init(id: Int, main: String, description: String, iconURL: URL) {
+        self.id = id
+        self.main = main
+        self.description = description
+        self.iconURL = iconURL
     }
 
 }
