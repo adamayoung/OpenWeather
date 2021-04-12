@@ -1,13 +1,19 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 #if canImport(Combine)
 import Combine
 #endif
 
 protocol Client {
 
+    #if !os(Linux)
     @available(OSX 10.15, iOS 14, watchOS 7, *)
     func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String) -> AnyPublisher<Response, OpenWeatherError>
+    #endif
 
     func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String,
                                       completion: @escaping (Result<Response, OpenWeatherError>) -> Void)
@@ -24,7 +30,12 @@ final class HTTPClient: Client {
         self.jsonDecoder = jsonDecoder
     }
 
-    @available(OSX 10.15, iOS 14, watchOS 7, *)
+}
+
+#if !os(Linux)
+@available(OSX 10.15, iOS 14, watchOS 7, *)
+extension HTTPClient {
+
     func request<Response: Decodable>(_ endpoint: Endpoint,
                                       apiKey: String) -> AnyPublisher<Response, OpenWeatherError> {
         let urlRequest = Self.createURLRequest(for: endpoint, apiKey: apiKey)
@@ -34,6 +45,11 @@ final class HTTPClient: Client {
             .mapResponse(to: Response.self, decoder: jsonDecoder)
             .eraseToAnyPublisher()
     }
+
+}
+#endif
+
+extension HTTPClient {
 
     func request<Response: Decodable>(_ endpoint: Endpoint, apiKey: String,
                                       completion: @escaping (Result<Response, OpenWeatherError>) -> Void) {
@@ -81,6 +97,7 @@ final class HTTPClient: Client {
                 return
             }
         }
+        .resume()
     }
 
     private static func createURLRequest(for endpoint: Endpoint, apiKey: String) -> URLRequest {
@@ -95,6 +112,7 @@ final class HTTPClient: Client {
 
 }
 
+#if !os(Linux)
 @available(OSX 10.15, iOS 14, watchOS 7, *)
 extension URLSession.DataTaskPublisher {
 
@@ -145,3 +163,4 @@ extension Publisher where Output == URLSession.DataTaskPublisher.Output {
     }
 
 }
+#endif

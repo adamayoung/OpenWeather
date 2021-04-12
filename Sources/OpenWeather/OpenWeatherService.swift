@@ -78,6 +78,7 @@ extension OpenWeatherService {
     }
 
 }
+#endif
 
 extension OpenWeatherService {
 
@@ -127,7 +128,6 @@ extension OpenWeatherService {
     }
 
 }
-#endif
 
 extension OpenWeatherService {
 
